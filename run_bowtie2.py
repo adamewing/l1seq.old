@@ -19,8 +19,8 @@ def bwt2(fastq, ref, faidx, threads=1):
     bwt2args = ['bowtie2', '-x' ,ref, '-5', '10', '--local', '--sensitive', '-p', str(threads), '-U', fastq, '-S', samfn]
     bamargs  = ['samtools', 'view', '-bt', faidx, '-o', bamfn, samfn]
     sortargs = ['samtools', 'sort', '-m', '4000000000', bamfn, sortfn]
+    idxargs  = ['samtools', 'index', bamfn]
 
-    # set up args
 
     print "bowtie2 run:", fastq, prefix, threads
     print "mapping:", bwt2args
@@ -31,6 +31,13 @@ def bwt2(fastq, ref, faidx, threads=1):
 
     print "sort bam:", sortargs
     subprocess.call(sortargs)
+
+    print sortfn + ".bam", "-->", bamfn
+    os.remove(bamfn)
+    os.rename(sortfn + ".bam", bamfn)
+
+    print "index bam:", idxargs
+    subprocess.call(idxargs)
 
 if len(sys.argv) == 4:
     bowtie_index = sys.argv[2]
