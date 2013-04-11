@@ -7,6 +7,14 @@ pysam (http://code.google.com/p/pysam/)
 tabix (http://samtools.sourceforge.net/tabix.shtml)
 bowtie2 (http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
+***
+Annotation files are required for l1seq.py (not available through github)
+These can be obtained at:
+http://hgwdev.soe.ucsc.edu/~ewingad/l1seq/annotation.tar.gz
+
+Put annotation.tar.gz in the l1seq directory and tar xvzf annotation.tar.gz
+***
+
 Additionally, a bowtie2 index and a fasta index (via samtools faidx) should be
 built from the same initial reference genome (in fasta format)
 
