@@ -1,4 +1,0 @@
-hg19.rmsk.bed.gz
-hg19.nonref.bed.gz
-hg19.genesymbol.bed.gz
-hg19.exons.bed.gz
