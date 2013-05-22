@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys
+import sys, os
 import subprocess
 from re import sub
 
@@ -43,7 +43,7 @@ if len(sys.argv) == 4:
     bowtie_index = sys.argv[2]
     fasta_index = sys.argv[3]
     assert fasta_index.endswith('.fai')
-    bwt2(sys.argv[1], bowtie_index, fasta_index, threads=4)
+    bwt2(sys.argv[1], bowtie_index, fasta_index, threads=8)
 
 else:
     print "usage:",sys.argv[0],"<fastq> <bowtie index> <fasta index (.fai from samtools faidx)>"

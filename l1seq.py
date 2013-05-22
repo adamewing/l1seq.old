@@ -131,9 +131,14 @@ class Cluster:
         minpos = min(self.starts)
         maxpos = max(self.starts) + 90
         mapscores = []
-        for mapregion in tabix.fetch(self.chrom, minpos, maxpos):
-            mapscores.append(float(mapregion.strip().split()[3]))
-        self.mapscore = sum(mapscores)/float(len(mapscores))
+        if self.chrom in tabix.contigs:
+            for mapregion in tabix.fetch(self.chrom, minpos, maxpos):
+                mapscores.append(float(mapregion.strip().split()[3]))
+
+        if mapscores:
+            self.mapscore = sum(mapscores)/float(len(mapscores))
+        else:
+            self.mapscore = 0
 
     def refL1(self):
         tabix = pysam.Tabixfile('annotation/hg19.primateL1.txt.gz', 'r')
